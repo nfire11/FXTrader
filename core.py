@@ -42,7 +42,7 @@ def get_candles(headers,instrument="AUD_USD",count=500,granularity="M5"):
 
 
 ## Get Current Price
-def get_pricing(headers,account_id="101-011-6420983-005",instrument="AUD_USD"):
+def get_pricing(headers,account_id="",instrument="AUD_USD"):
 	pricing_body={"instruments":instrument}
 	pricing_url="https://api-fxpractice.oanda.com/v3/accounts/"+account_id+"/pricing"
 	r = requests.get(pricing_url,headers=headers,params=pricing_body)
@@ -57,7 +57,7 @@ def get_pricing(headers,account_id="101-011-6420983-005",instrument="AUD_USD"):
 
 
 ####Place Order
-def place_order(headers,account_id="101-011-6420983-005",units=100000,instrument="AUD_USD"):
+def place_order(headers,account_id="",units=100000,instrument="AUD_USD"):
 	order_url="https://api-fxpractice.oanda.com/v3/accounts/"+account_id+"/orders"
 	order= {"order":{
 			"units": units,
@@ -76,7 +76,7 @@ def place_order(headers,account_id="101-011-6420983-005",units=100000,instrument
 
 
 ## Close Open Trade by ID
-def close_trade(headers,trade_id,account_id="101-011-6420983-005"):
+def close_trade(headers,trade_id,account_id=""):
 	close_trade_url="https://api-fxpractice.oanda.com/v3/accounts/"+account_id+"/trades/"+str(trade_id)+"/close"
 	close_trade_req = requests.put(close_trade_url,headers=headers)
 	close_trade_response = close_trade_req.status_code
@@ -84,7 +84,7 @@ def close_trade(headers,trade_id,account_id="101-011-6420983-005"):
 
 
 ## Batch Close Trades by Long or Short - Done
-def close_position(headers,account_id="101-011-6420983-005",order_type="long",instrument="AUD_USD"):
+def close_position(headers,account_id="",order_type="long",instrument="AUD_USD"):
 	if order_type=="long":
 		close_body={"longUnits":"ALL"}
 	if order_type=="short":
@@ -101,7 +101,7 @@ def close_position(headers,account_id="101-011-6420983-005",order_type="long",in
 		return req.status_code
 
 ## Get List of Trades - Done
-def get_trades(headers,account_id="101-011-6420983-005",instrument="",state="OPEN"):
+def get_trades(headers,account_id="",instrument="",state="OPEN"):
 	get_trades_url="https://api-fxpractice.oanda.com/v3/accounts/"+account_id+"/trades"
 	get_trades_body={"instruments":instrument,"state":state.upper()}
 	get_trades_req=requests.get(get_trades_url,headers=headers,params=get_trades_body)
