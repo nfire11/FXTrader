@@ -13,7 +13,7 @@ import time
 
 
 #Authorisation
-req_token="bearer 8aaecdbf20139b5ecdfc004435616c80-8bc288f120974d820ad37eb99ec67e3c"
+req_token="bearer "
 req_url="https://api-fxpractice.oanda.com/v3/instruments/EUR_AUD/candles"
 headers_get={"Authorization":req_token}
 headers={"Content-Type":"application/json", "Authorization":req_token}
